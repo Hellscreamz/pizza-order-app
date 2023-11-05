@@ -1,0 +1,153 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserType {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  address: String!
+  email: String!
+  mobile_phone: String!
+  password: String!
+  orders: [OrderType!]
+}
+
+type OrderType {
+  id: ID!
+  product_name: String!
+  size: ProductSize!
+  bought_at: DateTime!
+  price: Float!
+  amount: Float!
+  delivery: Boolean!
+  user: UserType!
+}
+
+enum ProductSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type AllOrdersType {
+  id: ID!
+  product_name: String!
+  size: ProductSize!
+  bought_at: DateTime!
+  price: Float!
+  amount: Float!
+  delivery: Boolean!
+}
+
+type OrderDeleteType {
+  product_name: String!
+  size: ProductSize!
+  amount: Float!
+  bought_at: DateTime!
+  price: Float!
+}
+
+type ProductType {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String!
+  size: ProductSize!
+  amount: Int!
+}
+
+type DeletedProductType {
+  name: String!
+  price: Float!
+  description: String!
+  size: ProductSize!
+  amount: Int!
+}
+
+type Query {
+  getAllOrders: [AllOrdersType!]!
+  getAllUsers: [UserType!]!
+  findUserByEmail(input: FindUserByEmailInput!): UserType!
+  getAllProducts: [ProductType!]!
+  findProductByName(input: FindProductByName!): ProductType!
+}
+
+input FindUserByEmailInput {
+  email: String!
+}
+
+input FindProductByName {
+  name: String!
+}
+
+type Mutation {
+  createOrder(input: CreateOrderInput!): OrderType!
+  deleteOrderById(input: DeleteOrderInput!): OrderDeleteType!
+  createUser(input: CreateUserInput!): UserType!
+  updateUser(input: UpdateUserInput!): UserType!
+  deleteUser(input: DeleteUserByEmailInput!): UserType!
+  createProduct(input: CreateProductInput!): ProductType!
+  deleteProduct(input: DeleteProductInput!): DeletedProductType!
+  updateProduct(input: UpdateProductInput!): ProductType!
+  loginUser(email: String!, password: String!): String!
+}
+
+input CreateOrderInput {
+  email: String!
+  product_name: String!
+  size: ProductSize!
+  amount: Int!
+}
+
+input DeleteOrderInput {
+  order_id: String!
+}
+
+input CreateUserInput {
+  first_name: String!
+  last_name: String!
+  address: String!
+  email: String!
+  password: String!
+  mobile_phone: String!
+}
+
+input UpdateUserInput {
+  first_name: String
+  last_name: String
+  address: String
+  email: String!
+  password: String
+  mobile_phone: String
+}
+
+input DeleteUserByEmailInput {
+  email: String!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  description: String!
+  size: ProductSize!
+  amount: Float!
+}
+
+input DeleteProductInput {
+  id: String!
+}
+
+input UpdateProductInput {
+  id: String!
+  name: String
+  price: Float
+  description: String
+  size: ProductSize
+  amount: Float
+}
