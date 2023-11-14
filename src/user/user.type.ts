@@ -21,9 +21,6 @@ export class UserType {
   @Field()
   mobile_phone: string;
 
-  @Field()
-  password: string;
-
   @Field(() => [OrderType], { nullable: true })
   orders?: OrderType[];
 }

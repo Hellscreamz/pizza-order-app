@@ -9,7 +9,6 @@ type UserType {
   address: String!
   email: String!
   mobile_phone: String!
-  password: String!
   orders: [OrderType!]
 }
 

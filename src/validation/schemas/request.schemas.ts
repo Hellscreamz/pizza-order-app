@@ -17,7 +17,7 @@ export const CreateUserInput = z.object({
   first_name: z.string().max(20),
   last_name: z.string().max(20),
   mobile_phone: z.string().max(100),
-  email: z.string().max(100),
+  email: z.string().email(),
   address: z.string().max(100),
   password: z.string().max(100),
 });
@@ -26,7 +26,7 @@ export const UpdateUserInputType = z.object({
   first_name: z.string().max(20).optional(),
   last_name: z.string().max(20).optional(),
   mobile_phone: z.string().max(100).optional(),
-  email: z.string().max(100),
+  email: z.string().email(),
   address: z.string().max(100).optional(),
   password: z.string().max(100).optional(),
 });
